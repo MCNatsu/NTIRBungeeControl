@@ -1,0 +1,3 @@
+name: NTIRBungeeChat
+version: '${project.version}'
+main: me.aq.plugin.NTIRBungeeChat
