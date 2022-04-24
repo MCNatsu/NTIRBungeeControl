@@ -1,4 +1,4 @@
-package me.aq.plugin.DataBase;
+package me.aq.plugin.Data.utils;
 
 import net.md_5.bungee.api.ChatColor;
 

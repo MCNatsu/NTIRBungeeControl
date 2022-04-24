@@ -1,7 +1,7 @@
-package me.aq.plugin;
+package me.aq.plugin.DC.verify;
 
+import me.aq.plugin.NTIRBungeeChat;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
-public final class Verify extends ListenerAdapter {
+public final class link extends ListenerAdapter {
 
     private NTIRBungeeChat plugin;
 
@@ -43,18 +43,19 @@ public final class Verify extends ListenerAdapter {
 
             plugin.data.verifydc(e.getMember() , args[1]);
             EmbedBuilder eb = new EmbedBuilder();
-            eb.setAuthor("你已成功綁定Minecraft帳號");
+            eb.setAuthor("你已成功綁定Minecraft帳號",null,"https://crafatar.com/avatars/" + plugin.data.getPlayer(args[1]).getUniqueId().toString());
             eb.setColor(Color.GREEN);
-            eb.setFooter("玩家UUID:"  + plugin.data.getPlayer(args[1]).getUniqueId().toString());
+            eb.setFooter("UUID:"  + plugin.data.getPlayer(args[1]).getUniqueId().toString());
             eb.setTimestamp(e.getMessage().getTimeCreated());
-            eb.setDescription("你已成功將將你的dc帳號連結至" + plugin.data.getPlayer(args[1]).getDisplayName());
 
             e.getMessage().replyEmbeds(eb.build()).queue();
-            Role role = plugin.jda.getRoleById("939336944339546172");
-            e.getGuild().addRoleToMember(e.getMember(),role).queue();
+            Role linkedPlayer = plugin.jda.getRoleById("939336944339546172");
+            Role Player = plugin.jda.getRoleById("893472407350808650");
+            Role wait = plugin.jda.getRoleById("893472407350808649");
+            e.getGuild().addRoleToMember(e.getMember(),linkedPlayer).queue();
+            e.getGuild().addRoleToMember(e.getMember(),Player).queue();
+            e.getGuild().removeRoleFromMember(e.getMember(),wait).queue();
             eb.clear();
-
-
 
 
         }
